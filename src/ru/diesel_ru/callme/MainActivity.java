@@ -16,13 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-import com.google.ads.AdView;
 
 public class MainActivity extends Activity {
 
@@ -30,6 +25,7 @@ public class MainActivity extends Activity {
 	static final private int PHONE_NUMBER = 3;
 	
 	String strOprator = "";
+	private boolean blClose = false;
 	SharedPreferences sp;
 	
 	ImageButton buttonSelectContact;
@@ -38,8 +34,6 @@ public class MainActivity extends Activity {
 	
 	TextView txtPhoneNumber;
 	
-	AdView adView;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,11 +41,12 @@ public class MainActivity extends Activity {
 		
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		strOprator = sp.getString("defaultOperator","0");
+		blClose = sp.getBoolean("CloseApp", false);
         
 		txtPhoneNumber = (TextView) findViewById(R.id.etPhone);
 		buttonSelectContact = (ImageButton) findViewById(R.id.btnContacts);
         buttonSelectFavoritesContact = (ImageButton) findViewById(R.id.btnFContacts);
-        //buttonSend = (ImageButton) findViewById(R.id.btnSend);
+        buttonSend = (ImageButton) findViewById(R.id.btnSend);
         
         Intent localIntent = getIntent();
         if (localIntent.getAction().contains("android.intent.action.SENDTO")){
@@ -78,7 +73,7 @@ public class MainActivity extends Activity {
 				_intent.setData(Uri.fromParts("tel", "*141*" + strNum + "#", "#"));
         	}else if (strOprator.compareToIgnoreCase("6") == 0) {
         		//"Other":
-        		_intent.setData(Uri.fromParts("tel", sp.getString("otherStartUSSD","") + strNum + sp.getString("otherEndUSSD",""), "#"));
+        		_intent.setData(Uri.fromParts("tel", sp.getString("otherStartUSSD","") + strNum + "#", "#"));
 			}else if (strOprator.compareToIgnoreCase("0") == 0) {
 				Toast.makeText(getApplicationContext(), "Выберите оператора связи!", Toast.LENGTH_SHORT).show();
 				return;
@@ -86,22 +81,7 @@ public class MainActivity extends Activity {
 
 			startActivity(_intent);
 			finish();
-        }
-        
-      //Создание adView ca-app-pub-9670568035952143/5674883316
-        //adView = new AdView(this, AdSize.BANNER, "a1510fa3b8c4d5e");
-        adView = new AdView(this, AdSize.BANNER, "ca-app-pub-9670568035952143/5674883316");
-        										    
-        // Поиск в LinearLayout (предполагается, что был назначен
-        // атрибут android:id="@+id/mainLayout"
-        LinearLayout layout = (LinearLayout)findViewById(R.id.admobLayout);
-
-        // Добавление adView
-        layout.addView(adView);
-
-        // Инициирование общего запроса на загрузку вместе с объявлением
-        adView.loadAd(new AdRequest());
-        
+        }        
         
         // Обработчик выбора контакта
         buttonSelectContact.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +113,7 @@ public class MainActivity extends Activity {
         		sendUSSD(txtPhoneNumber.getText().toString());
         	}
         });
+        
 	}
 
 	@Override
@@ -211,12 +192,41 @@ public class MainActivity extends Activity {
 			_intent.setData(Uri.fromParts("tel", "*141*" + strNum + "#", "#"));
     	}else if (strOprator.compareToIgnoreCase("6") == 0) {
     		//"Other"
-    		_intent.setData(Uri.fromParts("tel", sp.getString("otherStartUSSD","") + strNum + sp.getString("otherEndUSSD",""), "#"));
+    		_intent.setData(Uri.fromParts("tel", sp.getString("otherStartUSSD","") + strNum + "#", "#"));
 		}else if (strOprator.compareToIgnoreCase("0") == 0) {
 			Toast.makeText(getApplicationContext(), "Выберите оператора связи!", Toast.LENGTH_SHORT).show();
 			return;
 		}
 
 		startActivity(_intent);
+		
+		if(blClose)     
+	        finish();
+    }
+    
+    // Закрытие приложениЯ
+	@Override
+    protected void onStop(){
+       super.onStop();
+    }
+    
+	@Override
+    protected void onResume() {
+		strOprator = sp.getString("defaultOperator","0");
+		blClose = sp.getBoolean("CloseApp", false);
+		super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+		//Log.d(LOG_TAG, "onPause");
+		super.onPause();
+    }
+    
+    @Override
+    protected void onStart() {
+    	strOprator = sp.getString("defaultOperator","0");
+    	blClose = sp.getBoolean("CloseApp", false);
+		super.onStart();
     }
 }

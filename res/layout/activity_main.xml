@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:text="@string/Abonent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btnContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,46 +25,45 @@
         android:layout_marginRight="13dp"
         android:layout_marginTop="5dp"
         android:layout_toLeftOf="@+id/btnFContacts"
-        android:src="@drawable/contact_blue" />
+        android:background="@drawable/contact_blue" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btnFContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/textView1"
         android:layout_alignTop="@+id/btnContacts"
-        android:src="@drawable/star_blue" />
+        android:background="@drawable/star_blue" />
 
     <EditText
         android:id="@+id/etPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/btnContacts"
-        android:layout_marginLeft="13dp"
+        android:layout_alignParentLeft="true"
         android:layout_marginRight="13dp"
         android:layout_toLeftOf="@+id/btnContacts"
         android:ems="10" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/btnFContacts"
-        android:layout_below="@+id/etPhone"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/send_blue" />
-    
-    <LinearLayout
-        android:id="@+id/admobLayout"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnContacts"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/etPhone"
+        android:background="@drawable/send_blue"
+        android:scaleType="center" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/btnSend"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical" >
-
-    </LinearLayout>
+        android:layout_marginTop="15dp"
+        android:text="@string/USSD" />
 
 </RelativeLayout>

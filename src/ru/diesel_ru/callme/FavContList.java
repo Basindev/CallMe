@@ -16,7 +16,7 @@ import android.widget.ListView;
 
 public class FavContList extends ListActivity  {
 	final String LOG_TAG = "myLogs";
-	public final static String PHONE_NUMBER = "ru.diesel_ru.irkrusmser.PHONE_NUMBER";  
+	public final static String PHONE_NUMBER = "ru.diesel_ru.callme.PHONE_NUMBER";  
 	ArrayList<String> favGroupId=new ArrayList<String>();
 	ArrayList<String> favPhoneNum=new ArrayList<String>();
 	AlertDialog.Builder  builder;
