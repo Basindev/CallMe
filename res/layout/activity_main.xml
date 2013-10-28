@@ -9,40 +9,62 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/tv"
-        android:layout_below="@+id/tv"
-        android:ems="10"
-        android:text="@string/StartUSSD" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
-        android:layout_toLeftOf="@+id/editText2"
-        android:layout_toRightOf="@+id/editText1"
-        android:text="@string/PhoneNumber" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/Abonent" />
+
+    <ImageView
+        android:id="@+id/btnContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/btnFContacts"
+        android:src="@drawable/contact_blue" />
+
+    <ImageView
+        android:id="@+id/btnFContacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_alignTop="@+id/btnContacts"
+        android:src="@drawable/star_blue" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="50dp"
+        android:id="@+id/etPhone"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBottom="@+id/btnContacts"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_toLeftOf="@+id/btnContacts"
+        android:ems="10" />
+
+    <ImageView
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/btnFContacts"
+        android:layout_below="@+id/etPhone"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/send_blue" />
+    
+    <LinearLayout
+        android:id="@+id/admobLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:ems="10"
-        android:text="@string/EndUSSD" />
+        android:layout_below="@+id/btnSend"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+    </LinearLayout>
 
 </RelativeLayout>

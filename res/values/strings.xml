@@ -7,5 +7,6 @@
     <string name="PhoneNumber">&lt;Номер телефона&gt;</string>
     <string name="EndUSSD">#</string>
     <string name="StartUSSD">*110*</string>
+    <string name="Abonent">Абонент</string>
 
 </resources>
